@@ -4,7 +4,7 @@
  * Main file
  *
  * Authors: Peter Sutton, Luke Kamols
- * Modified by <YOUR NAME HERE>
+ * Modified by Hiu Yi NAM, Student ID: 46604563
  */ 
 
 #include <stdio.h>
@@ -67,7 +67,7 @@ void start_screen(void) {
 	move_terminal_cursor(10,10);
 	printf_P(PSTR("Teeko"));
 	move_terminal_cursor(10,12);
-	printf_P(PSTR("CSSE2010/7201 project by <your name here>"));
+	printf_P(PSTR("CSSE2010 project by Hiu Yi NAM 46604563"));
 	
 	// Output the static start screen and wait for a push button 
 	// to be pushed or a serial input of 's'
