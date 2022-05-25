@@ -112,6 +112,7 @@ void play_game(void) {
 	
 	uint32_t last_flash_time, current_time;
 	uint8_t btn; //the button pushed
+	char serial_input;
 	
 	last_flash_time = get_current_time();
 	
@@ -121,6 +122,21 @@ void play_game(void) {
 		// We need to check if any button has been pushed, this will be
 		// NO_BUTTON_PUSHED if no button has been pushed
 		btn = button_pushed();
+		
+		char serial_input = 1;
+		if (serial_input_available()) {
+			serial_input = fgetc(stdin);
+		}
+		
+		if (serial_input == 'w' || serial_input == 'W') {
+			// move the cursor upwards
+		} else if (serial_input == 'a' || serial_input == 'A') {
+			// Move the cursor to the left
+		} else if (serial_input == 's' || serial_input == 'S') {
+			// Move the cursor downwards
+		} else if (serial_input == 'd' || serial_input == 'D') {
+			// Move the cursor to the right
+		}
 		
 		if (btn == BUTTON3_PUSHED) {
 			// If button 3 is pushed, move left,
