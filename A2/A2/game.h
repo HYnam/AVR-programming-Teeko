@@ -15,6 +15,20 @@
 // and also updates the display of the board
 void initialise_game(void);
 
+// Move direction cursor in terminal
+
+// Move cursor upward
+void move_piece_up(void);
+
+// move cursor left
+void move_piece_left(void);
+
+// move cursor down
+void move_piece_down(void);
+
+// move cursor right
+void move_piece_right(void);
+
 // returns which piece is located at position (x,y)
 // the value returned will be SQUARE_EMPTY, SQUARE_P1 or SQUARE_P2
 // anything outside the bounds of the boards will be SQUARE_EMPTY

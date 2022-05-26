@@ -45,6 +45,30 @@ void initialise_game(void) {
 	cursor_visible = 0;
 }
 
+void move_piece_up(void) {
+	cursor_y ++;
+}
+
+void move_piece_left(void) {
+	cursor_x --;
+}
+
+void move_piece_down(void) {
+	cursor_y --;
+}
+
+void move_piece_right(void) {
+	cursor_x ++;
+}
+
+uint8_t get_piece_row(void) {
+	return cursor_x;
+}
+
+uint8_t get_piece_column(void) {
+	return cursor_y;
+}
+
 uint8_t get_piece_at(uint8_t x, uint8_t y) {
 	// check the bounds, anything outside the bounds
 	// will be considered empty
@@ -85,7 +109,7 @@ void move_display_cursor(int8_t dx, int8_t dy) {
 	 * 4: reset the cursor flashing cycle. See project.c for how the cursor
 	 *		is flashed.
 	 */
-	
+		
 }
 
 uint8_t is_game_over(void) {

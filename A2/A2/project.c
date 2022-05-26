@@ -130,12 +130,16 @@ void play_game(void) {
 		
 		if (serial_input == 'w' || serial_input == 'W') {
 			// move the cursor upwards
+			move_piece_up();
 		} else if (serial_input == 'a' || serial_input == 'A') {
 			// Move the cursor to the left
+			move_piece_left();
 		} else if (serial_input == 's' || serial_input == 'S') {
 			// Move the cursor downwards
+			move_piece_down();
 		} else if (serial_input == 'd' || serial_input == 'D') {
 			// Move the cursor to the right
+			move_piece_right();
 		}
 		
 		if (btn == BUTTON3_PUSHED) {
