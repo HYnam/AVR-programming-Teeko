@@ -31,6 +31,8 @@ void new_game(void);
 void play_game(void);
 void handle_game_over(void);
 
+#define ESCAPE_CHAR 27
+
 /////////////////////////////// main //////////////////////////////////
 int main(void) {
 	// Setup hardware and call backs. This will turn on 
@@ -112,7 +114,8 @@ void play_game(void) {
 	
 	uint32_t last_flash_time, current_time;
 	uint8_t btn; //the button pushed
-	char serial_input;
+	char serial_input, escape_sequence_char;
+	uint8_t chars_in_escape_sequence = 0;
 	
 	last_flash_time = get_current_time();
 	
@@ -124,20 +127,35 @@ void play_game(void) {
 		btn = button_pushed();
 		
 		char serial_input = 1;
+		escape_sequence_char = -1;
+		
 		if (serial_input_available()) {
 			serial_input = fgetc(stdin);
+			if (chars_in_escape_sequence == 0 && serial_input == ESCAPE_CHAR) {
+				chars_in_escape_sequence ++;
+				serial_input = -1;
+			} else if (chars_in_escape_sequence == 1 && serial_input == '[') {
+				chars_in_escape_sequence ++;
+				serial_input = -1;
+			} else if (chars_in_escape_sequence == 2) {
+				escape_sequence_char = serial_input;
+				serial_input = -1;
+				chars_in_escape_sequence = 0;
+			} else {
+				chars_in_escape_sequence = 0;
+			}
 		}
 		
-		if (serial_input == 'w' || serial_input == 'W') {
+		if (serial_input == 'w' || serial_input == 'W' || escape_sequence_char == 'A') {
 			// move the cursor upwards
 			move_piece_up();
-		} else if (serial_input == 'a' || serial_input == 'A') {
+		} else if (serial_input == 'a' || serial_input == 'A' || escape_sequence_char == 'D') {
 			// Move the cursor to the left
 			move_piece_left();
-		} else if (serial_input == 's' || serial_input == 'S') {
+		} else if (serial_input == 's' || serial_input == 'S' || escape_sequence_char == 'B') {
 			// Move the cursor downwards
 			move_piece_down();
-		} else if (serial_input == 'd' || serial_input == 'D') {
+		} else if (serial_input == 'd' || serial_input == 'D' || escape_sequence_char == 'C') {
 			// Move the cursor to the right
 			move_piece_right();
 		}

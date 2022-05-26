@@ -46,19 +46,31 @@ void initialise_game(void) {
 }
 
 void move_piece_up(void) {
-	cursor_y ++;
+	if (cursor_y < HEIGHT && cursor_x < WIDTH) {
+		cursor_y ++;
+		initialise_display();
+	}
 }
 
 void move_piece_left(void) {
-	cursor_x --;
+	if (cursor_x < WIDTH && cursor_y < HEIGHT) {
+		cursor_x --;
+		initialise_display();
+	}
 }
 
 void move_piece_down(void) {
-	cursor_y --;
+	if (cursor_y < HEIGHT && cursor_x < WIDTH) {
+		cursor_y --;
+		initialise_display();
+	}
 }
 
 void move_piece_right(void) {
-	cursor_x ++;
+	if (cursor_x < WIDTH && cursor_y < HEIGHT) {
+		cursor_x ++;
+		initialise_display();
+	}
 }
 
 uint8_t get_piece_row(void) {
