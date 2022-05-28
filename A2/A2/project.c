@@ -4,7 +4,7 @@
  * Main file
  *
  * Authors: Peter Sutton, Luke Kamols
- * Modified by Hiu Yi NAM, Student ID: 46604563
+ * Modified by Hiu Yi NAM 46604563
  */ 
 
 #include <stdio.h>
@@ -146,24 +146,29 @@ void play_game(void) {
 			}
 		}
 		
-		if (serial_input == 'w' || serial_input == 'W' || escape_sequence_char == 'A') {
-			// move the cursor upwards
-			move_piece_up();
-		} else if (serial_input == 'a' || serial_input == 'A' || escape_sequence_char == 'D') {
-			// Move the cursor to the left
-			move_piece_left();
-		} else if (serial_input == 's' || serial_input == 'S' || escape_sequence_char == 'B') {
-			// Move the cursor downwards
-			move_piece_down();
-		} else if (serial_input == 'd' || serial_input == 'D' || escape_sequence_char == 'C') {
-			// Move the cursor to the right
-			move_piece_right();
-		}
-		
-		if (btn == BUTTON3_PUSHED) {
-			// If button 3 is pushed, move left,
-			// i.e decrease x by 1 and leave y the same
+		if (serial_input == 'w' || serial_input == 'W' || escape_sequence_char == 'A' || btn == BUTTON1_PUSHED) {
+			// move the cursor upwards			
+			move_display_cursor(0, 1);
+			//flush the cursor
+			last_flash_time-= 500;
+		} else if (serial_input == 'a' || serial_input == 'A' || escape_sequence_char == 'D' || btn == BUTTON3_PUSHED) {
+			// Move the cursor to the left			
 			move_display_cursor(-1, 0);
+			//flush the cursor
+			last_flash_time-= 500;
+		} else if (serial_input == 's' || serial_input == 'S' || escape_sequence_char == 'B' || btn == BUTTON0_PUSHED) {
+			// Move the cursor downwards			
+			move_display_cursor(0, -1);
+			//flush the cursor
+			last_flash_time-= 500;
+		} else if (serial_input == 'd' || serial_input == 'D' || escape_sequence_char == 'C' || btn == BUTTON2_PUSHED) {
+			// Move the cursor to the right			
+			move_display_cursor(1, 0);
+			//flush the cursor
+			last_flash_time-= 500;
+		}else if (serial_input == ' ' || serial_input == 'p' || serial_input == 'P' ) {
+			//update the pieces (place, move, and pick handeling)
+			update_piece();
 		}
 	
 		current_time = get_current_time();

@@ -35,6 +35,7 @@ static volatile uint32_t last_button_time[4];
 // change interrupts PCINT8 to PCINT11 which are covered by
 // Pin change interrupt 1.
 void init_button_interrupts(void) {
+	cli();
 	// Enable the interrupt (see datasheet page 82)
 	PCICR |= (1<<PCIE1);
 	
@@ -48,6 +49,7 @@ void init_button_interrupts(void) {
 	
 	// Empty the button push queue
 	queue_length = 0;
+	sei();
 	
 	// Set the last button pressed time for all pins to be zero
 	// This is not the current time as that would enforce an ordering
