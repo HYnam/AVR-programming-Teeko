@@ -23,12 +23,18 @@
 #define PLAYER_1		1
 #define PLAYER_2		2
 #define CURSOR			3
+/*. The cursor should flash a different colour while a piece is picked up. */
+#define CURSOR_PICKER   4
+#define SQUARE_PICKER   5
 
 // terminal colour definitions
-#define TERMINAL_COLOUR_EMPTY	BG_BLACK
-#define TERMINAL_COLOUR_P1		BG_GREEN
-#define TERMINAL_COLOUR_P2		BG_RED
-#define TERMINAL_COLOUR_CURSOR	BG_YELLOW
+#define TERMINAL_COLOUR_EMPTY			BG_BLACK
+#define TERMINAL_COLOUR_P1				BG_GREEN
+#define TERMINAL_COLOUR_P2				BG_RED
+#define TERMINAL_COLOUR_CURSOR			BG_YELLOW
+
+#define TERMINAL_COLOUR_CURSOR_PICKER	BG_CYAN
+#define TERMINAL_COLOUR_SQUARE_PICKER	BG_WHITE
 
 // initialise the display for the board, this creates the display
 // for an empty board

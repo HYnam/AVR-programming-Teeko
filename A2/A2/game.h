@@ -40,4 +40,7 @@ void update_piece( void );
 //draw the pieces in the game board
 void draw_game( void );
 
+// display longest line
+void print_longest_line( void );
+
 #endif /* GAME_H_ */

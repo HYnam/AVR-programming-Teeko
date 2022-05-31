@@ -64,6 +64,10 @@ void initialise_hardware(void) {
 }
 
 void start_screen(void) {
+	/*======================================================
+	2) Start Screen (Level 1 – 4 marks) 
+	=======================================================*/
+	
 	// Clear terminal screen and output a message
 	clear_terminal();
 	move_terminal_cursor(10,10);
@@ -114,7 +118,8 @@ void play_game(void) {
 	
 	uint32_t last_flash_time, current_time;
 	uint8_t btn; //the button pushed
-	char serial_input, escape_sequence_char;
+	
+	char escape_sequence_char;
 	uint8_t chars_in_escape_sequence = 0;
 	
 	last_flash_time = get_current_time();
@@ -145,6 +150,11 @@ void play_game(void) {
 				chars_in_escape_sequence = 0;
 			}
 		}
+		/*======================================================
+		3) Move Cursor with Buttons (Level 1 – 12 marks)
+		========================================================
+		4) Move Cursor with Terminal Input (Level 1 – 5 marks) 
+		=======================================================*/
 		
 		if (serial_input == 'w' || serial_input == 'W' || escape_sequence_char == 'A' || btn == BUTTON1_PUSHED) {
 			// move the cursor upwards			
@@ -166,17 +176,16 @@ void play_game(void) {
 			move_display_cursor(1, 0);
 			//flush the cursor
 			last_flash_time-= 500;
-		}else if (serial_input == ' ' || serial_input == 'p' || serial_input == 'P' ) {
+		}else if (serial_input == ' ') {
 			//update the pieces (place, move, and pick handeling)
 			update_piece();
 		}
-	
+
 		current_time = get_current_time();
 		if(current_time >= last_flash_time + 500) {
 			// 500ms (0.5 second) has passed since the last time we
 			// flashed the cursor, so flash the cursor
-			flash_cursor();
-			
+			flash_cursor();			
 			// Update the most recent time the cursor was flashed
 			last_flash_time = current_time;
 		}

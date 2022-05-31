@@ -39,11 +39,17 @@ void update_square_colour(uint8_t x, uint8_t y, uint8_t object) {
 	DisplayParameter backgroundColour;
 	if (object == PLAYER_1) {
 		backgroundColour = TERMINAL_COLOUR_P1;
-		} else if (object == PLAYER_2) {
+	} else if (object == PLAYER_2) {
 		backgroundColour = TERMINAL_COLOUR_P2;
-		} else if (object == CURSOR) {
+	} else if (object == CURSOR) {
 		backgroundColour = TERMINAL_COLOUR_CURSOR;
-		} else {
+
+	} else if (object == CURSOR_PICKER) {
+		backgroundColour = TERMINAL_COLOUR_CURSOR_PICKER;
+		
+	} else if (object == SQUARE_PICKER) {
+		backgroundColour = TERMINAL_COLOUR_SQUARE_PICKER;
+	} else {
 		// anything unexpected will be black
 		backgroundColour = TERMINAL_COLOUR_EMPTY;
 	}
